@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Meeting Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .table-header {
+            background-color: #f2f2f2;
+        }
+
+        .table-header th {
+            font-weight: bold;
+        }
+
+        .table-row:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h2
+        {
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+<h1>User Meeting Details</h1>
+<table border="1">
+    <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Date of Birth</th>
+        <th>City</th>
+        <th>Meetings</th>
+    </tr>
+    <tr th:each="userMeeting : ${userMeetingDTOs}">
+        <td th:text="${userMeeting.userId}"></td>
+        <td th:text="${userMeeting.userName}"></td>
+        <td th:text="${userMeeting.dateOfBirth}"></td>
+        <td th:text="${userMeeting.city}"></td>
+        <td>
+            <ul>
+                <li th:each="meeting : ${userMeeting.meetings}">
+                    <span th:text="${meeting.title}"></span> -
+                    <span th:text="${meeting.description}"></span> -
+                    <span th:text="${meeting.date}"></span> -
+                    <span th:text="${meeting.time}"></span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
